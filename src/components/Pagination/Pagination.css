@@ -1,0 +1,17 @@
+.container__row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:40px 0;
+
+}
+.container__page{
+    font-size: 19px;
+    margin: 5px;
+    border-radius: 6px;
+    background: #121212;
+    color: #5A4C30;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+}
