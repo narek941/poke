@@ -2,11 +2,15 @@ import React from "react";
 
 import "./Pagination.css";
 
-const Pagination = (props) => {
+const Pagination = ({totalCount}) => {
+
+  console.log(totalCount)
   return (
     <>
       <div>
+    
       <div className="container__row">
+      
           <div ><button className="container__page">1</button></div>
           <div ><button className="container__page">2</button></div>
           <div><button className="container__page">3</button></div>
