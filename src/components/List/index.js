@@ -1,12 +1,10 @@
 import React from "react";
 
 import Card from "../Card";
-import Pagination from "../Pagination";
 import "./List.css";
-import * as Api from "../../assets/api";
 
 const List = ({pokemons}) => {
-
+  console.log(pokemons)
   return (
     <>
       <div className="container list__container">
