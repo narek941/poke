@@ -2,41 +2,42 @@ import React from "react";
 
 import "./Bar.css";
 
-const Bar = ({ perPageHandler, sortHandler, typeHandler }) => {
+const Bar = ({
+  perPageHandler,
+  sortHandler,
+  typeHandler,
+  handleInputChange,
+}) => {
   return (
     <>
       <div className="container bar__container">
         <div className="filter__container">
-          <form>
-            <input
-              className="filter__input"
-              maxLength="25"
-              value=""
-              placeholder="Search by name"
-            />
-            <button className="filter__button">Search</button>
-          </form>
+          <input
+            className="filter__input"
+            maxLength="25"
+            placeholder="Search by name"
+          />
+          <button className="filter__button">Search</button>
           <select className="select__wrapper" onChange={(e) => typeHandler(e)}>
-            <option value="0">All Types</option>
-            <option value="1">normal</option>
-            <option value="2">fighting</option>
-            <option value="3">flying</option>
-            <option value="4">poison</option>
-            <option value="5">ground</option>
-            <option value="6">rock</option>
-            <option value="7">bug</option>
-            <option value="8">ghost</option>
-            <option value="9">steel</option>
-            <option value="10">fire</option>
-            <option value="11">water</option>
-            <option value="12">grass</option>
-            <option value="13">electric</option>
-            <option value="14">psychic</option>
-            <option value="15">ice</option>
-            <option value="16">dragon</option>
-            <option value="17">dark</option>
-            <option value="18">fairy</option>
-            <option value="19">unknown</option>
+            <option value="all">All Types</option>
+            <option value="normal">normal</option>
+            <option value="fighting">fighting</option>
+            <option value="flying">flying</option>
+            <option value="poison">poison</option>
+            <option value="ground">ground</option>
+            <option value="rock">rock</option>
+            <option value="bug">bug</option>
+            <option value="ghost">ghost</option>
+            <option value="steel">steel</option>
+            <option value="fire">fire</option>
+            <option value="water">water</option>
+            <option value="grass">grass</option>
+            <option value="electric">electric</option>
+            <option value="psychic">psychic</option>
+            <option value="ice">ice</option>
+            <option value="dragon">dragon</option>
+            <option value="dark">dark</option>
+            <option value="fairy">fairy</option>
           </select>
           <select className="select__wrapper" onChange={(e) => sortHandler(e)}>
             <option value="0">Lowest to highest number</option>

@@ -1,11 +1,11 @@
 const initialState = {
   pokemons: [],
   totalCount: 0,
+  isLoading: false,
 };
 export const SET_POKEMONS = "SET_POKEMONS";
 export const SET_TOTAL_COUNT = "SET_TOTAL_COUNT";
-export const SHOW_LOADER = "SHOW_LOADER";
-export const HIDE_LOADER = "HIDE_LOADER";
+export const IS_LOADING = "IS_LOADING";
 
 export const pokemonReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -14,7 +14,9 @@ export const pokemonReducer = (state = initialState, action) => {
 
     case SET_TOTAL_COUNT:
       return { ...state, totalCount: action.payload };
-      
+
+    case IS_LOADING:
+      return { ...state, isLoading: action.payload };
     default:
       return state;
   }

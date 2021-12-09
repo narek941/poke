@@ -1,0 +1,16 @@
+.header__wrapper {
+  background-color: #0d0c13;
+  width: 100%;
+  border-bottom: 1px solid #b5afaa;
+  position: static;
+}
+h1 {
+  text-align: center;
+  font-size: 52px;
+  text-align: center;
+  margin: 0;
+  padding: 10px 0;
+}
+h1:hover {
+  color: #5A4C30;
+}

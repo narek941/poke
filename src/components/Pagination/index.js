@@ -1,16 +1,14 @@
 import React from "react";
-import ReactPaginate from 'react-paginate';
+import ReactPaginate from "react-paginate";
 
 import "./Pagination.css";
 
-const Pagination = ({totalCount,perPage,currentPage,handlePageClick}) => {
-
-  console.log(totalCount)
+const Pagination = ({ totalCount, perPage, currentPage, handlePageClick }) => {
   return (
     <>
       <ReactPaginate
         className="paginate"
-        pageCount={Math.ceil(totalCount/perPage)}
+        pageCount={Math.ceil(totalCount / perPage)}
         breakLabel="..."
         nextLabel="next >"
         onPageChange={(e) => handlePageClick(e)}
@@ -20,7 +18,6 @@ const Pagination = ({totalCount,perPage,currentPage,handlePageClick}) => {
         activeClassName="checked__page"
         renderOnZeroPageCount={null}
       />
-
     </>
   );
 };

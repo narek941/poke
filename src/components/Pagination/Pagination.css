@@ -1,22 +1,26 @@
-.paginate{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin:40px 0;
-
+.paginate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
 }
 
-.paginate li{
-    list-style-type: none;
-    cursor: pointer;
+.paginate li {
+  list-style-type: none;
+  cursor: pointer;
 }
-.page{
-    padding: 5px;
-    margin:5px;
-    background-color:#202027;
+.page {
+  padding: 5px;
+  margin: 5px;
+  background-color: #202027;
 }
-.checked__page{
-    padding: 5px;
-    margin:5px;
-    background-color:#5A4C30;
+.page:hover {
+  padding: 5px;
+  margin: 5px;
+  background-color: #0f0f0f;
+}
+.checked__page {
+  padding: 5px;
+  margin: 5px;
+  background-color: #5a4c30;
 }
