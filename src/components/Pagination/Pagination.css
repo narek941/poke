@@ -3,13 +3,12 @@
   align-items: center;
   justify-content: center;
   margin: 40px 0;
+  list-style-type: none;
 }
 
-.paginate li {
+.page {
   list-style-type: none;
   cursor: pointer;
-}
-.page {
   padding: 5px;
   margin: 5px;
   background-color: #202027;
@@ -20,6 +19,9 @@
   background-color: #0f0f0f;
 }
 .checked__page {
+  list-style-type: none;
+  cursor: pointer;
+  color: red;
   padding: 5px;
   margin: 5px;
   background-color: #5a4c30;

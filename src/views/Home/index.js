@@ -20,7 +20,7 @@ const Home = () => {
   const totalCount = useSelector((state) => state.pokemons.totalCount);
   const isLoading = useSelector((state) => state.pokemons.isLoading);
 
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(10);
 
   const typeHandler = (e) => {
@@ -74,7 +74,7 @@ const Home = () => {
         sortHandler={sortHandler}
         typeHandler={typeHandler}
       />
-      {isLoading ? <Loading /> : <List pokemons={pokemons} />}
+      <List pokemons={pokemons} isLoading={isLoading} />
       <Pagination
         totalCount={totalCount}
         perPage={perPage}

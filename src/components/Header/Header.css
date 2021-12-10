@@ -2,15 +2,82 @@
   background-color: #0d0c13;
   width: 100%;
   border-bottom: 1px solid #b5afaa;
-  position: static;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1;
+  margin-bottom: 30px;
 }
 h1 {
   text-align: center;
   font-size: 52px;
   text-align: center;
   margin: 0;
-  padding: 10px 0;
+  padding: 10px;
 }
 h1:hover {
-  color: #5A4C30;
+  color: #5a4c30;
+}
+
+.bounce {
+  animation-name: bounce-5;
+  animation-timing-function: ease;
+}
+
+.pokeball {
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  position: relative;
+  background: white;
+}
+
+.pokeball:before {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 25px;
+  border-bottom: solid 3px black;
+  border-radius: 25px 25px 0 0;
+  background: red;
+}
+.pokeball:after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px black, 0 0 0 2px #ddd, 0 0 0 3.57px black,
+    0 0 5px 3.57px rgba(0, 0, 0, 0.4);
+}
+@keyframes bounce-5 {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(1.1, 0.9) translateY(0);
+  }
+  30% {
+    transform: scale(0.9, 1.1) translateY(-100px);
+  }
+  50% {
+    transform: scale(1, 1) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(-7px);
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
 }

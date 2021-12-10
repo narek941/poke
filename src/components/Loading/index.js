@@ -1,12 +1,13 @@
 import React from "react";
+import load from "../../assets/img/loading.gif";
 
 import "./Loading.css";
 
 const Loading = (props) => {
   return (
     <>
-      <div className="header__wrapper">
-        <h1>Loading</h1>
+      <div className="card__container">
+        <img src={load} alt="loading..." />
       </div>
     </>
   );
