@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import Bar from "../../components/Bar";
 import List from "../../components/List";
 import Header from "../../components/Header";
-import Loading from "../../components/Loading";
 import Pagination from "../../components/Pagination";
 import {
   setSorted,
   setPokemons,
   setPokemonsByTypes,
+  setSearchResult,
 } from "../../redux/actions/pokemonActions";
 
 import "./Home.css";
@@ -17,12 +17,22 @@ import "./Home.css";
 const Home = () => {
   const dispatch = useDispatch();
   const pokemons = useSelector((state) => state.pokemons.pokemons);
-  const totalCount = useSelector((state) => state.pokemons.totalCount);
   const isLoading = useSelector((state) => state.pokemons.isLoading);
+  const totalCount = useSelector((state) => state.pokemons.totalCount);
 
+  const [perPage, setPerPage] = useState(25);
+  const [inputValue, setInputValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [perPage, setPerPage] = useState(10);
-
+  const [groupofPages, setGroupofPages] = useState([]);
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+  const searchClick = (e) => {
+    e.preventDefault();
+    if (e.target.searchText.value.trim().length > 1)
+      dispatch(setSearchResult(e.target.searchText.value));
+    setInputValue("");
+  };
   const typeHandler = (e) => {
     dispatch(setPokemonsByTypes(e.target.value, perPage, currentPage));
   };
@@ -58,12 +68,13 @@ const Home = () => {
     setPerPage(e.target.value);
     setCurrentPage(0);
   };
-  const handlePageClick = (e) => {
-    setCurrentPage(e.selected * perPage);
+
+  const handlePageClick = (item) => {
+    setCurrentPage(item);
   };
 
   useEffect(() => {
-    dispatch(setPokemons(perPage, currentPage));
+    dispatch(setPokemons(perPage, currentPage * perPage));
   }, [currentPage, perPage]);
 
   return (
@@ -73,13 +84,18 @@ const Home = () => {
         perPageHandler={perPageHandler}
         sortHandler={sortHandler}
         typeHandler={typeHandler}
+        inputValue={inputValue}
+        handleInputChange={handleInputChange}
+        searchClick={searchClick}
       />
       <List pokemons={pokemons} isLoading={isLoading} />
       <Pagination
+        pokemons={pokemons}
         totalCount={totalCount}
         perPage={perPage}
         currentPage={currentPage}
         handlePageClick={handlePageClick}
+        groupofPages={groupofPages}
       />
     </>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 
-import Home from "./views/Home";
+import Home from "./containers/Home";
 
 function App() {
   return (

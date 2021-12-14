@@ -16,6 +16,7 @@
   display: flex;
   align-items: center;
   gap: 30px;
+  position: relative;
 }
 .filter__input {
   background-color: #0d0c13;

@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 import "./Bar.css";
 
 const Bar = ({
@@ -7,17 +6,27 @@ const Bar = ({
   sortHandler,
   typeHandler,
   handleInputChange,
+  inputValue,
+  searchClick,
 }) => {
   return (
     <>
       <div className="container bar__container">
         <div className="filter__container">
-          <input
-            className="filter__input"
-            maxLength="25"
-            placeholder="Search by name"
-          />
-          <button className="filter__button">Search</button>
+          <form onSubmit={searchClick}>
+            <input
+              name="searchText"
+              className="filter__input"
+              maxLength="25"
+              placeholder="Search by name"
+              value={inputValue}
+              onChange={handleInputChange}
+            />
+            <button type="submit" className="filter__button">
+              Search
+            </button>
+          </form>
+
           <select className="select__wrapper" onChange={(e) => typeHandler(e)}>
             <option value="all">All Types</option>
             <option value="normal">normal</option>
@@ -47,8 +56,7 @@ const Bar = ({
           </select>
         </div>
         <select className="select__wrapper" onChange={(e) => perPageHandler(e)}>
-          <option value="10">10</option>
-          <option value="20">20</option>
+          <option value="20">25</option>
           <option value="50">50</option>
           <option value="100">100</option>
         </select>
