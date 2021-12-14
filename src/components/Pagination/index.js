@@ -9,11 +9,19 @@ const Pagination = ({
   currentPage,
   handlePageClick,
   numberofPages,
-  groupofPages,
+  getGroupofPage,
 }) => {
+  let arr =getGroupofPage();
+
   return (
     <div className="pagination__wrapper">
-      {groupofPages.map((item) => (
+        <button
+          onClick={() => handlePageClick(currentPage-1)}
+          className={ "page"}
+        >
+          prev
+        </button>
+      {arr.map((item) => (
         <button
           key={item}
           onClick={() => handlePageClick(item)}
@@ -22,6 +30,13 @@ const Pagination = ({
           {item}
         </button>
       ))}
+         <button
+        onClick={() => handlePageClick(currentPage+1)}
+        className={ "page"}
+      >
+        next
+      </button>
+      
     </div>
   );
 };
