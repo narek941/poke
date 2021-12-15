@@ -8,6 +8,7 @@ const Bar = ({
   handleInputChange,
   inputValue,
   searchClick,
+  currentList,
 }) => {
   return (
     <>
@@ -48,18 +49,28 @@ const Bar = ({
             <option value="dark">dark</option>
             <option value="fairy">fairy</option>
           </select>
-          <select className="select__wrapper" onChange={(e) => sortHandler(e)}>
-            <option value="0">Lowest to highest number</option>
-            <option value="1">Highest to lowest number</option>
-            <option value="2">A-Z</option>
-            <option value="3">Z-A</option>
-          </select>
+          {currentList && (
+            <select
+              className="select__wrapper"
+              onChange={(e) => sortHandler(e)}
+            >
+              <option value="0">Lowest to highest number</option>
+              <option value="1">Highest to lowest number</option>
+              <option value="2">A-Z</option>
+              <option value="3">Z-A</option>
+            </select>
+          )}
         </div>
-        <select className="select__wrapper" onChange={(e) => perPageHandler(e)}>
-          <option value="20">25</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-        </select>
+        {currentList && (
+          <select
+            className="select__wrapper"
+            onChange={(e) => perPageHandler(e)}
+          >
+            <option value="20">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        )}
       </div>
     </>
   );

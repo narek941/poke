@@ -7,7 +7,7 @@ const Loading = (props) => {
   return (
     <>
       <div className="card__container">
-        <img src={load} alt="loading..." />
+        <img className="card__container__image" src={load} alt="loading..." />
       </div>
     </>
   );

@@ -9,14 +9,16 @@
   z-index: 1;
   margin-bottom: 30px;
 }
-h1 {
+.header_main {
   text-align: center;
   font-size: 52px;
   text-align: center;
   margin: 0;
   padding: 10px;
+  color: #b5afaa;
+  cursor: pointer;
 }
-h1:hover {
+.header_main:hover {
   color: #5a4c30;
 }
 

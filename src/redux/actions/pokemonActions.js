@@ -16,8 +16,18 @@ export function setPokemons(limit = 25, offset = 0) {
       const total = data.count;
       const pokemon = data.results.map(async (pokemon) => {
         const res = await axios.get(pokemon.url);
-        const { height, id, name, sprites, stats, types, weight } = res.data;
-        return { id, height, name, sprites, stats, types, weight };
+        const { height, id, name, sprites, stats, types, weight, abilities } =
+          res.data;
+        return {
+          id,
+          height,
+          name,
+          sprites,
+          stats,
+          types,
+          weight,
+          abilities,
+        };
       });
       const parsedPokemonList = await Promise.all(pokemon);
       dispatch({ type: SET_POKEMONS, payload: parsedPokemonList });
@@ -41,8 +51,18 @@ export function setPokemonsByTypes(type = "", limit = 25, offset = 0) {
       const total = data.pokemon.length;
       const pokemon = data.pokemon.map(async (pokemon) => {
         const res = await axios.get(pokemon.pokemon.url);
-        const { height, id, name, sprites, stats, types, weight } = res.data;
-        return { id, height, name, sprites, stats, types, weight };
+        const { height, id, name, sprites, stats, types, weight, abilities } =
+          res.data;
+        return {
+          id,
+          height,
+          name,
+          sprites,
+          stats,
+          types,
+          weight,
+          abilities,
+        };
       });
       const parsedPokemonList = await Promise.all(pokemon);
       dispatch({ type: SET_POKEMONS, payload: parsedPokemonList });
@@ -64,8 +84,18 @@ export function setSearchResult(name) {
         .filter((item) => item.name.includes(name))
         .map(async (pokemon) => {
           const res = await axios.get(pokemon.url);
-          const { height, id, name, sprites, stats, types, weight } = res.data;
-          return { id, height, name, sprites, stats, types, weight };
+          const { height, id, name, sprites, stats, types, weight, abilities } =
+            res.data;
+          return {
+            id,
+            height,
+            name,
+            sprites,
+            stats,
+            types,
+            weight,
+            abilities,
+          };
         });
       const total = pokemon.length;
 

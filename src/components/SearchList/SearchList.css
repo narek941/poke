@@ -1,0 +1,25 @@
+.search__list__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 10px auto;
+  padding: 10px;
+  max-height: 50px;
+  border-bottom: 3px solid #5a4c30;
+  max-height: 100px;
+  cursor: pointer;
+}
+.search__list__container:hover {
+  background-color: #5a4c30;
+}
+.search__list__name {
+  font-size: 32px;
+  padding: 0 10px;
+  text-transform: capitalize;
+}
+.search__list__img {
+  max-width: 100px;
+  max-height: 100%;
+  padding: 0 10px;
+}

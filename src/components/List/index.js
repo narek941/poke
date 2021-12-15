@@ -6,7 +6,7 @@ import "./List.css";
 const List = ({ pokemons, isLoading }) => {
   const pokemonCard = pokemons.map((item) =>
     isLoading ? (
-      <Load />
+      <Load key={item.id} />
     ) : (
       <Card
         key={item.id}

@@ -1,13 +1,13 @@
 import React from "react";
 
-import Home from "./containers/Home";
+import MainRouter from "./router";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <Home />
+      <MainRouter />
     </div>
   );
-}
+};
 
 export default App;

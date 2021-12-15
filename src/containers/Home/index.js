@@ -5,6 +5,7 @@ import Bar from "../../components/Bar";
 import List from "../../components/List";
 import Header from "../../components/Header";
 import Pagination from "../../components/Pagination";
+import SearchList from "../../components/SearchList";
 import {
   setSorted,
   setPokemons,
@@ -23,7 +24,8 @@ const Home = () => {
   const [perPage, setPerPage] = useState(25);
   const [inputValue, setInputValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [groupofPages, setGroupofPages] = useState([]);
+  const [currentList, setCurrentList] = useState(true);
+
   const totalPages = Math.ceil(totalCount / perPage);
 
   const handleInputChange = (e) => {
@@ -34,8 +36,11 @@ const Home = () => {
     if (e.target.searchText.value.trim().length > 1)
       dispatch(setSearchResult(e.target.searchText.value));
     setInputValue("");
+    setCurrentList(false);
   };
   const typeHandler = (e) => {
+    setCurrentList(true);
+
     dispatch(setPokemonsByTypes(e.target.value, perPage, currentPage));
   };
 
@@ -75,38 +80,37 @@ const Home = () => {
     setCurrentPage(item);
   };
 
-  const getGroupofPage =()=>{
-    let maxPages =10;
-   let startPage = 1;
-   let endPage = totalPages;
-
+  const getGroupofPage = () => {
+    let maxPages = 10;
+    let startPage = 1;
+    let endPage = totalPages;
 
     if (totalPages <= maxPages) {
-        startPage = 1;
-        endPage = totalPages;
+      startPage = 1;
+      endPage = totalPages;
     } else {
-        const maxPagesBeforeCurrentPage = Math.floor(maxPages / 2);
-        const maxPagesAfterCurrentPage = Math.ceil(maxPages / 2) - 1;
-        if (currentPage <= maxPagesBeforeCurrentPage) {
-            startPage = 1;
-            endPage = maxPages;
-        } else if (currentPage + maxPagesAfterCurrentPage >= totalPages) {
-            startPage = totalPages - maxPages + 1;
-            endPage = totalPages;
-        } else {
-            startPage = currentPage - maxPagesBeforeCurrentPage;
-            endPage = currentPage + maxPagesAfterCurrentPage;
-        }
+      const maxPagesBeforeCurrentPage = Math.floor(maxPages / 2);
+      const maxPagesAfterCurrentPage = Math.ceil(maxPages / 2) - 1;
+      if (currentPage <= maxPagesBeforeCurrentPage) {
+        startPage = 1;
+        endPage = maxPages;
+      } else if (currentPage + maxPagesAfterCurrentPage >= totalPages) {
+        startPage = totalPages - maxPages + 1;
+        endPage = totalPages;
+      } else {
+        startPage = currentPage - maxPagesBeforeCurrentPage;
+        endPage = currentPage + maxPagesAfterCurrentPage;
+      }
     }
 
-
-    const pages = Array.from(Array((endPage + 1) - startPage).keys()).map(i => startPage + i);
-
+    const pages = Array.from(Array(endPage + 1 - startPage).keys()).map(
+      (i) => startPage + i
+    );
 
     return pages;
-  }
+  };
   useEffect(() => {
-    dispatch(setPokemons(perPage, currentPage * perPage));
+    dispatch(setPokemons(perPage, (currentPage - 1) * perPage));
   }, [currentPage, perPage]);
 
   return (
@@ -119,20 +123,25 @@ const Home = () => {
         inputValue={inputValue}
         handleInputChange={handleInputChange}
         searchClick={searchClick}
+        currentList={currentList}
       />
-      <List pokemons={pokemons} isLoading={isLoading} />
-     {
-     totalPages > 1
-      &&  
-     <Pagination
-        pokemons={pokemons}
-        totalCount={totalCount}
-        perPage={perPage}
-        currentPage={currentPage}
-        handlePageClick={handlePageClick}
-        getGroupofPage={getGroupofPage}
-      />
-      }
+      {currentList ? (
+        <div>
+          <List pokemons={pokemons} isLoading={isLoading} />
+          {totalPages > 1 && (
+            <Pagination
+              pokemons={pokemons}
+              totalCount={totalCount}
+              perPage={perPage}
+              currentPage={currentPage}
+              handlePageClick={handlePageClick}
+              getGroupofPage={getGroupofPage}
+            />
+          )}
+        </div>
+      ) : (
+        <SearchList pokemons={pokemons} />
+      )}
     </>
   );
 };
