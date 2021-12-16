@@ -6,6 +6,7 @@
 }
 .list__container {
   display: grid;
+
   grid-template-columns: 185px 185px 185px 185px 185px;
-  gap: 45px;
+  gap: 40px;
 }

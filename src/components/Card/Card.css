@@ -34,12 +34,6 @@ h2 {
   text-transform: capitalize;
   color: #b5afaa;
 }
-.card__info {
-  margin: 5px;
-  padding: 0;
-  text-align: center;
-  color: #b5afaa;
-}
 
 .card__title {
   color: #b5afaa;

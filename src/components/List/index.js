@@ -11,7 +11,7 @@ const List = ({ pokemons, isLoading }) => {
       <Card
         key={item.id}
         id={item.id}
-        img={item.sprites.front_default}
+        img={item.sprites.other.home.front_default}
         name={item.name}
         weight={item.weight}
         height={item.height}

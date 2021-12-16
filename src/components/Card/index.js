@@ -14,9 +14,6 @@ const Card = ({ name, img, id, height, weight }) => {
 
           <div className="card__container__content">
             <h2> {name}</h2>
-            <p className="card__info">
-              h {height}, w {weight}
-            </p>
           </div>
         </div>
       </div>

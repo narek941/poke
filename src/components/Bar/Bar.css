@@ -22,15 +22,15 @@
   background-color: #0d0c13;
   padding: 5px;
   border-radius: 10px;
-  color: #b5afaa;
   font-size: 16px;
-  border: none;
+  color: #b5afaa;
+  border: 1px solid #5a4c30;
 }
 .filter__button {
   background-color: unset;
   padding: 5px;
-  color: #5a4c30;
   font-size: 16px;
+  color: #b5afaa;
   border: none;
 }
 .select__wrapper {
@@ -41,4 +41,6 @@
   border: none;
   cursor: pointer;
   border-radius: 10px;
+  color: #b5afaa;
+  border: 1px solid #5a4c30;
 }

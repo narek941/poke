@@ -16,8 +16,19 @@ export function setPokemons(limit = 25, offset = 0) {
       const total = data.count;
       const pokemon = data.results.map(async (pokemon) => {
         const res = await axios.get(pokemon.url);
-        const { height, id, name, sprites, stats, types, weight, abilities } =
-          res.data;
+        console.log(res.data);
+        const {
+          height,
+          id,
+          name,
+          sprites,
+          stats,
+          types,
+          weight,
+          abilities,
+          species,
+          game_indices,
+        } = res.data;
         return {
           id,
           height,
@@ -27,6 +38,8 @@ export function setPokemons(limit = 25, offset = 0) {
           types,
           weight,
           abilities,
+          species,
+          game_indices,
         };
       });
       const parsedPokemonList = await Promise.all(pokemon);
@@ -42,6 +55,7 @@ export function setPokemons(limit = 25, offset = 0) {
 
 export function setPokemonsByTypes(type = "", limit = 25, offset = 0) {
   return async (dispatch) => {
+    console.log("i m here");
     try {
       dispatch({ type: IS_LOADING, payload: true });
 
@@ -51,8 +65,18 @@ export function setPokemonsByTypes(type = "", limit = 25, offset = 0) {
       const total = data.pokemon.length;
       const pokemon = data.pokemon.map(async (pokemon) => {
         const res = await axios.get(pokemon.pokemon.url);
-        const { height, id, name, sprites, stats, types, weight, abilities } =
-          res.data;
+        const {
+          id,
+          height,
+          name,
+          sprites,
+          stats,
+          types,
+          weight,
+          abilities,
+          species,
+          game_indices,
+        } = res.data;
         return {
           id,
           height,
@@ -62,6 +86,8 @@ export function setPokemonsByTypes(type = "", limit = 25, offset = 0) {
           types,
           weight,
           abilities,
+          species,
+          game_indices,
         };
       });
       const parsedPokemonList = await Promise.all(pokemon);
@@ -84,8 +110,18 @@ export function setSearchResult(name) {
         .filter((item) => item.name.includes(name))
         .map(async (pokemon) => {
           const res = await axios.get(pokemon.url);
-          const { height, id, name, sprites, stats, types, weight, abilities } =
-            res.data;
+          const {
+            height,
+            id,
+            name,
+            sprites,
+            stats,
+            types,
+            weight,
+            abilities,
+            game_indices,
+            species,
+          } = res.data;
           return {
             id,
             height,
@@ -95,6 +131,8 @@ export function setSearchResult(name) {
             types,
             weight,
             abilities,
+            species,
+            game_indices,
           };
         });
       const total = pokemon.length;

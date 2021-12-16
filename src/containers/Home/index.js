@@ -73,7 +73,6 @@ const Home = () => {
 
   const perPageHandler = (e) => {
     setPerPage(e.target.value);
-    setCurrentPage(0);
   };
 
   const handlePageClick = (item) => {
@@ -130,9 +129,6 @@ const Home = () => {
           <List pokemons={pokemons} isLoading={isLoading} />
           {totalPages > 1 && (
             <Pagination
-              pokemons={pokemons}
-              totalCount={totalCount}
-              perPage={perPage}
               currentPage={currentPage}
               handlePageClick={handlePageClick}
               getGroupofPage={getGroupofPage}

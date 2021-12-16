@@ -1,28 +1,37 @@
 .pagination__wrapper {
+  margin: 0 auto;
+  width: 500px;
+}
+.pagination {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   margin: 40px 0;
   list-style-type: none;
 }
-
 .page {
   list-style-type: none;
   cursor: pointer;
-  padding: 5px;
+  padding: 5px 10px;
   margin: 5px;
+  color: #b5afaa;
   background-color: #202027;
+  border: 2px solid #b5afaa;
+  border-radius: 5px;
 }
 .page:hover {
-  padding: 5px;
-  margin: 5px;
   background-color: #0f0f0f;
 }
 .checked__page {
+  border: 2px solid #b5afaa;
+  border-radius: 5px;
   list-style-type: none;
   cursor: pointer;
-  color: red;
-  padding: 5px;
+  color: #b5afaa;
+  padding: 5px 10px;
   margin: 5px;
   background-color: #5a4c30;
+}
+.disable__button {
+  display: none;
 }
