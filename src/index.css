@@ -1,13 +1,12 @@
 body {
   margin: 0;
   padding: 0;
-  background-color:#202027;
-  color: #B5AFAA;
-  font-family: 'Comic Neue', cursive;
-
+  background-color: #202027;
+  color: #b5afaa;
+  font-family: "Comic Neue", cursive;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }

@@ -9,14 +9,12 @@ export function setPokemons(limit = 25, offset = 0) {
   return async (dispatch) => {
     try {
       dispatch({ type: IS_LOADING, payload: true });
-
       const { data } = await axios.get(
         `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
       );
       const total = data.count;
       const pokemon = data.results.map(async (pokemon) => {
         const res = await axios.get(pokemon.url);
-        console.log(res.data);
         const {
           height,
           id,
@@ -55,10 +53,8 @@ export function setPokemons(limit = 25, offset = 0) {
 
 export function setPokemonsByTypes(type = "", limit = 25, offset = 0) {
   return async (dispatch) => {
-    console.log("i m here");
     try {
       dispatch({ type: IS_LOADING, payload: true });
-
       const { data } = await axios.get(
         `https://pokeapi.co/api/v2/type/${type}/?limit=${limit}&offset=${offset}`
       );
@@ -136,7 +132,6 @@ export function setSearchResult(name) {
           };
         });
       const total = pokemon.length;
-
       const parsedPokemonList = await Promise.all(pokemon);
       const fileteredPokemons = parsedPokemonList.filter((pokemon) =>
         pokemon.name.toLowerCase().includes(name.toLowerCase())
@@ -148,8 +143,6 @@ export function setSearchResult(name) {
       dispatch({ type: SET_TOTAL_COUNT, payload: total });
     } catch (error) {
       console.log(error);
-    } finally {
-      console.log("fin");
     }
   };
 }

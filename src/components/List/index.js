@@ -1,6 +1,9 @@
 import React from "react";
-import Load from "../Loading/index";
+import PropTypes from "prop-types";
+
 import Card from "../Card";
+import Load from "../Loading/index";
+
 import "./List.css";
 
 const List = ({ pokemons, isLoading }) => {
@@ -13,13 +16,14 @@ const List = ({ pokemons, isLoading }) => {
         id={item.id}
         img={item.sprites.other.home.front_default}
         name={item.name}
-        weight={item.weight}
-        height={item.height}
       />
     )
   );
 
   return <div className="container list__container">{pokemonCard}</div>;
 };
-
+List.propTypes = {
+  pokemons: PropTypes.array,
+  isLoading: PropTypes.bool,
+};
 export default List;

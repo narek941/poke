@@ -5,11 +5,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  z-index: 1;
   margin-bottom: 30px;
 }
-.header_main {
+
+.header_logo {
   text-align: center;
   font-size: 52px;
   text-align: center;
@@ -18,12 +17,9 @@
   color: #b5afaa;
   cursor: pointer;
 }
-.header_main:hover {
-  color: #5a4c30;
-}
 
 .bounce {
-  animation-name: bounce-5;
+  animation-name: bounce;
   animation-timing-function: ease;
 }
 
@@ -46,6 +42,7 @@
   border-radius: 25px 25px 0 0;
   background: red;
 }
+
 .pokeball:after {
   content: "";
   display: block;
@@ -60,7 +57,8 @@
   box-shadow: 0 0 0 1px black, 0 0 0 2px #ddd, 0 0 0 3.57px black,
     0 0 5px 3.57px rgba(0, 0, 0, 0.4);
 }
-@keyframes bounce-5 {
+
+@keyframes bounce {
   0% {
     transform: scale(1, 1) translateY(0);
   }

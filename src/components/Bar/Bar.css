@@ -43,4 +43,5 @@
   border-radius: 10px;
   color: #b5afaa;
   border: 1px solid #5a4c30;
+  text-transform: capitalize;
 }

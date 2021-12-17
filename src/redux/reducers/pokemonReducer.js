@@ -1,6 +1,6 @@
 const initialState = {
   pokemons: [],
-  filteredPokemon:[],
+  filteredPokemon: [],
   totalCount: 0,
   isLoading: false,
 };
@@ -13,14 +13,12 @@ export const pokemonReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_POKEMONS:
       return { ...state, pokemons: action.payload };
-
     case SET_TOTAL_COUNT:
       return { ...state, totalCount: action.payload };
-
     case IS_LOADING:
       return { ...state, isLoading: action.payload };
     case SEARCH_POKEMONS:
-      return {...state, filteredPokemon: action.payload}
+      return { ...state, filteredPokemon: action.payload };
     default:
       return state;
   }

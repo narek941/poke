@@ -5,15 +5,13 @@ import Bar from "../../components/Bar";
 import List from "../../components/List";
 import Header from "../../components/Header";
 import Pagination from "../../components/Pagination";
-import SearchList from "../../components/SearchList";
+import FilteredList from "../../components/FilteredList";
 import {
   setSorted,
   setPokemons,
   setPokemonsByTypes,
   setSearchResult,
 } from "../../redux/actions/pokemonActions";
-
-import "./Home.css";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -27,7 +25,7 @@ const Home = () => {
   const [currentList, setCurrentList] = useState(true);
 
   const totalPages = Math.ceil(totalCount / perPage);
-
+  const offset = (currentPage - 1) * perPage;
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
@@ -38,10 +36,12 @@ const Home = () => {
     setInputValue("");
     setCurrentList(false);
   };
+
   const typeHandler = (e) => {
     setCurrentList(true);
 
     dispatch(setPokemonsByTypes(e.target.value, perPage, currentPage));
+    setCurrentList(false);
   };
 
   const sortHandler = (e) => {
@@ -108,8 +108,9 @@ const Home = () => {
 
     return pages;
   };
+
   useEffect(() => {
-    dispatch(setPokemons(perPage, (currentPage - 1) * perPage));
+    dispatch(setPokemons(perPage, offset));
   }, [currentPage, perPage]);
 
   return (
@@ -136,7 +137,7 @@ const Home = () => {
           )}
         </div>
       ) : (
-        <SearchList pokemons={pokemons} />
+        <FilteredList pokemons={pokemons} />
       )}
     </>
   );

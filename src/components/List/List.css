@@ -8,5 +8,5 @@
   display: grid;
 
   grid-template-columns: 185px 185px 185px 185px 185px;
-  gap: 40px;
+  gap: 45px;
 }

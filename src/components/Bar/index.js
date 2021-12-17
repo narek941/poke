@@ -1,4 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
+import PropTypes from "prop-types";
+
 import "./Bar.css";
 
 const Bar = ({
@@ -23,15 +25,21 @@ const Bar = ({
               value={inputValue}
               onChange={handleInputChange}
             />
+
             <button type="submit" className="filter__button">
               Search
             </button>
           </form>
 
-          <select className="select__wrapper" onChange={(e) => typeHandler(e)}>
-            <option value="all">All Types</option>
-            <option value="normal">normal</option>
-            <option value="fighting">fighting</option>
+          <select
+            name="types"
+            id="types"
+            className="select__wrapper"
+            onChange={(e) => typeHandler(e)}
+          >
+            <option>Type</option>
+            <option value="normal">Normal</option>
+            <option value="fighting">Fighting</option>
             <option value="flying">flying</option>
             <option value="poison">poison</option>
             <option value="ground">ground</option>
@@ -49,6 +57,7 @@ const Bar = ({
             <option value="dark">dark</option>
             <option value="fairy">fairy</option>
           </select>
+
           {currentList && (
             <select
               className="select__wrapper"
@@ -74,6 +83,15 @@ const Bar = ({
       </div>
     </>
   );
+};
+Bar.propTypes = {
+  perPageHandler: PropTypes.func,
+  sortHandler: PropTypes.func,
+  typeHandler: PropTypes.func,
+  handleInputChange: PropTypes.func,
+  inputValue: PropTypes.string,
+  searchClick: PropTypes.func,
+  currentList: PropTypes.bool,
 };
 
 export default Bar;
