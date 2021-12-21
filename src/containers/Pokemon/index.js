@@ -42,15 +42,14 @@ const Pokemon = () => {
 
   const renderClass = (stat) => {
     const arr = [];
-    const colorForStat = Math.ceil(stat / 25);
-    ///Array from
-    for (let i = 10; i > 0; i--) {
-      if (i <= colorForStat) {
+    const colorForStat = Math.ceil(10 - stat / 25);
+    Array.from(Array(10).keys()).map((i) => {
+      if (i >= colorForStat) {
         arr.push("pokemonsDetail__stat__box__inner color_for_stat");
       } else {
         arr.push("pokemonsDetail__stat__box__inner");
       }
-    }
+    });
     return arr.map((classItem, index) => (
       <span key={index} className={classItem}></span>
     ));
