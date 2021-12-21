@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Bar from "../../components/Bar";
-import List from "../../components/List";
-import Header from "../../components/Header";
-import Pagination from "../../components/Pagination";
-import FilteredList from "../../components/FilteredList";
+import { Bar, List, Header, Pagination, FilteredList } from "../../components";
+
 import {
   setSorted,
   setPokemons,

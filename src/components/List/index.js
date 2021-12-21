@@ -11,12 +11,7 @@ const List = ({ pokemons, isLoading }) => {
     isLoading ? (
       <Load key={item.id} />
     ) : (
-      <Card
-        key={item.id}
-        id={item.id}
-        img={item.sprites.other.home.front_default}
-        name={item.name}
-      />
+      <Card key={item.id} id={item.id} img={item.img} name={item.name} />
     )
   );
 
