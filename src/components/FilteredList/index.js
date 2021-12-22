@@ -6,7 +6,11 @@ import "./FilteredList.css";
 
 const FilteredList = ({ pokemons }) => {
   const pokemonCard = pokemons.map((item, index) => (
-    <NavLink className="search__list__container" to={"pokemon/" + item.id}>
+    <NavLink
+      className="search__list__container"
+      to={"pokemon/" + item.id}
+      key={index}
+    >
       <p className="search__list__name">{index + 1}</p>
       <p className="search__list__name">{item.name}</p>
       <img className="search__list__img" src={item.img} alt="pokemon" />
@@ -16,6 +20,6 @@ const FilteredList = ({ pokemons }) => {
   return <div className="container">{pokemonCard}</div>;
 };
 FilteredList.propTypes = {
-  pokemons: PropTypes.object,
+  pokemons: PropTypes.array,
 };
 export default FilteredList;
