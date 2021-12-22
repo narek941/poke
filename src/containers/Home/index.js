@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Bar, List, Header, Pagination, FilteredList } from "../../components";
-
 import {
   setSorted,
   setPokemons,

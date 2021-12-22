@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import * as constants from "../../assets/constants";
+
 import {
   SET_POKEMONS,
   SET_TOTAL_COUNT,
@@ -10,7 +11,6 @@ import {
 
 export function setPokemons(limit = 25, offset = 0) {
   return async (dispatch) => {
-    console.log("hiii");
     try {
       dispatch({ type: IS_LOADING, payload: true });
       const { data } = await axios.get(
@@ -26,7 +26,7 @@ export function setPokemons(limit = 25, offset = 0) {
       dispatch({ type: SET_POKEMONS, payload: pokemon });
       dispatch({ type: SET_TOTAL_COUNT, payload: total });
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     } finally {
       dispatch({ type: IS_LOADING, payload: false });
     }
@@ -54,7 +54,7 @@ export function setPokemonsById(id) {
         },
       });
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     } finally {
       dispatch({ type: IS_LOADING, payload: false });
     }
@@ -77,7 +77,7 @@ export function setPokemonsByTypes(type = "normal") {
       dispatch({ type: SET_POKEMONS, payload: pokemon });
       dispatch({ type: SET_TOTAL_COUNT, payload: total });
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     } finally {
       dispatch({ type: IS_LOADING, payload: false });
     }
@@ -108,7 +108,7 @@ export function setSearchResult(name) {
       });
       dispatch({ type: SET_TOTAL_COUNT, payload: total });
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   };
 }

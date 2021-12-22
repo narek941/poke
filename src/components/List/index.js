@@ -7,7 +7,7 @@ import Load from "../Loading/index";
 import "./List.css";
 
 const List = ({ pokemons, isLoading }) => {
-  const pokemonCard = pokemons.map((item) =>
+  const pokemonCard = pokemons?.map((item) =>
     isLoading ? (
       <Load key={item.id} />
     ) : (
