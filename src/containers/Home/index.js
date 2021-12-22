@@ -36,7 +36,6 @@ const Home = () => {
 
   const typeHandler = (e) => {
     setCurrentList(true);
-
     dispatch(setPokemonsByTypes(e.target.value, perPage, currentPage));
     setCurrentList(false);
   };
@@ -74,13 +73,13 @@ const Home = () => {
 
   const handlePageClick = (item) => {
     setCurrentPage(item);
+    window.scrollTo(0, 0);
   };
 
   const getGroupofPage = () => {
     let maxPages = 10;
     let startPage = 1;
     let endPage = totalPages;
-
     if (totalPages <= maxPages) {
       startPage = 1;
       endPage = totalPages;
@@ -123,7 +122,7 @@ const Home = () => {
         currentList={currentList}
       />
       {currentList ? (
-        <div>
+        <>
           <List pokemons={pokemons} isLoading={isLoading} />
           {totalPages > 1 && (
             <Pagination
@@ -132,7 +131,7 @@ const Home = () => {
               getGroupofPage={getGroupofPage}
             />
           )}
-        </div>
+        </>
       ) : (
         <FilteredList pokemons={pokemons} />
       )}

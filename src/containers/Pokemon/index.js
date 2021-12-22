@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Header, PokemonDetail } from "../../components";
+import * as constants from "../../assets/constants";
 import { setPokemonsById } from "../../redux/actions/pokemonActions";
 
 import "./Pokemon.css";
@@ -17,46 +18,31 @@ const Pokemon = () => {
     dispatch(setPokemonsById(poke));
   }, []);
 
-  console.log(pokemon, "pokemonpokemon");
-
   const renderType = pokemon?.types?.map((type, index) => (
-    <span
-      key={index}
-      className="detail__text"
-      style={{
-        backgroundColor: pokemon.game_indices[1].version.name,
-      }}
-    >
+    <span key={index} className="detail__text">
       {type.type.name}
     </span>
   ));
 
   const renderAbility = pokemon.abilities?.map((ability, index) => (
-    <span
-      key={index}
-      className="detail__text"
-      style={{
-        backgroundColor: pokemon.game_indices[0].version.name,
-      }}
-    >
+    <span key={index} className="detail__text">
       {ability.ability.name}
     </span>
   ));
 
   const renderClass = (stat) => {
-    const arr = [];
-
+    const statsArr = [];
     const colorForStat = Math.ceil(10 - stat / 25);
 
     Array.from(Array(10).keys()).map((i) => {
       if (i >= colorForStat) {
-        arr.push("pokemonsDetail__stat__box__inner color_for_stat");
+        statsArr.push(constants.statsWithColorStyle);
       } else {
-        arr.push("pokemonsDetail__stat__box__inner");
+        statsArr.push(constants.statsWithoutColorStyle);
       }
     });
 
-    return arr.map((classItem, index) => (
+    return statsArr.map((classItem, index) => (
       <span key={index} className={classItem}></span>
     ));
   };

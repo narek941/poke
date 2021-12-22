@@ -4,18 +4,19 @@ import PropTypes from "prop-types";
 import "./Pagination.css";
 
 const Pagination = ({ currentPage, handlePageClick, getGroupofPage }) => {
-  const arr = getGroupofPage();
+  const groupArr = getGroupofPage();
+  const prevStyle = `${currentPage === 1 ? "disable__button" : "page"}`;
 
   return (
     <div className="pagination__wrapper">
       <div className="pagination">
         <button
           onClick={() => handlePageClick(currentPage - 1)}
-          className={`${currentPage === 1 ? "disable__button" : "page"}`}
+          className={prevStyle}
         >
           prev
         </button>
-        {arr.map((item) => (
+        {groupArr.map((item) => (
           <button
             key={item}
             onClick={() => handlePageClick(item)}
@@ -26,7 +27,7 @@ const Pagination = ({ currentPage, handlePageClick, getGroupofPage }) => {
         ))}
         <button
           onClick={() => handlePageClick(currentPage + 1)}
-          className={"page"}
+          className="page"
         >
           next
         </button>

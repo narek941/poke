@@ -8,14 +8,15 @@
   border: 4px solid #5a4c30;
   cursor: pointer;
 }
-
 .card__container__image {
   width: 100%;
   height: 150px;
   bottom: -5px;
   position: absolute;
 }
-
+.card__container__image:hover {
+  transform: scale(1.15);
+}
 .card__container__content {
   text-align: center;
   padding-top: 30px;

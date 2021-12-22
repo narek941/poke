@@ -25,3 +25,10 @@ export const filterArr = [
   "A-Z",
   "Z-A",
 ];
+
+export const statsWithColorStyle =
+  "pokemonsDetail__stat__box__inner color_for_stat";
+export const statsWithoutColorStyle = "pokemonsDetail__stat__box__inner";
+export const baseUrl = "https://pokeapi.co/api/v2/";
+export const imgUrl =
+  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/";

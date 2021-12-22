@@ -1,10 +1,12 @@
+import axios from "axios";
+
+import * as constants from "../../assets/constants";
 import {
   SET_POKEMONS,
   SET_TOTAL_COUNT,
   IS_LOADING,
   SET_SINGLE_POKEMON,
 } from "../reducers/pokemonReducer";
-import axios from "axios";
 
 export function setPokemons(limit = 25, offset = 0) {
   return async (dispatch) => {
@@ -12,16 +14,14 @@ export function setPokemons(limit = 25, offset = 0) {
     try {
       dispatch({ type: IS_LOADING, payload: true });
       const { data } = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+        `${constants.baseUrl}pokemon/?limit=${limit}&offset=${offset}`
       );
       const total = data.count;
       const pokemon = data.results.map((item) => ({
         name: item.name,
         url: item.url,
         id: item.url.split("/")[6],
-        img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${
-          item.url.split("/")[6]
-        }.png`,
+        img: `${constants.imgUrl}${item.url.split("/")[6]}.png`,
       }));
       dispatch({ type: SET_POKEMONS, payload: pokemon });
       dispatch({ type: SET_TOTAL_COUNT, payload: total });
@@ -37,9 +37,7 @@ export function setPokemonsById(id) {
   return async (dispatch) => {
     try {
       dispatch({ type: IS_LOADING, payload: true });
-      const { data } = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${id}`
-      );
+      const { data } = await axios.get(`${constants.baseUrl}pokemon/${id}`);
 
       dispatch({
         type: SET_SINGLE_POKEMON,
@@ -67,19 +65,14 @@ export function setPokemonsByTypes(type = "normal") {
   return async (dispatch) => {
     try {
       dispatch({ type: IS_LOADING, payload: true });
-      const { data } = await axios.get(
-        `https://pokeapi.co/api/v2/type/${type}/`
-      );
+      const { data } = await axios.get(`${constants.baseUrl}/type/${type}/`);
       const total = data.pokemon.length;
       const pokemon = data.pokemon.map((item) => ({
         name: item.pokemon.name,
         url: item.pokemon.url,
         id: item.pokemon.url.split("/")[6],
-        img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${
-          item.pokemon.url.split("/")[6]
-        }.png`,
+        img: `${constants.imgUrl}${item.pokemon.url.split("/")[6]}.png`,
       }));
-      console.log(pokemon);
 
       dispatch({ type: SET_POKEMONS, payload: pokemon });
       dispatch({ type: SET_TOTAL_COUNT, payload: total });
@@ -94,7 +87,7 @@ export function setSearchResult(name) {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon?limit=1118`
+        `${constants.baseUrl}pokemon?limit=1118`
       );
       const pokemon = data.results
         .filter((item) => item.name.includes(name))
@@ -102,9 +95,7 @@ export function setSearchResult(name) {
           name: item.name,
           url: item.url,
           id: item.url.split("/")[6],
-          img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${
-            item.url.split("/")[6]
-          }.png`,
+          img: `${constants.imgUrl}${item.url.split("/")[6]}.png`,
         }));
       const total = pokemon.length;
       const parsedPokemonList = await Promise.all(pokemon);

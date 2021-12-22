@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { typeArr, perPageArr, filterArr } from "../../assets/const";
+import * as constants from "../../assets/constants";
 
 import "./Bar.css";
 
@@ -39,7 +39,7 @@ const Bar = ({
           onChange={(e) => typeHandler(e)}
         >
           <option>Type</option>
-          {typeArr.map((type, index) => (
+          {constants.typeArr.map((type, index) => (
             <option key={index} value="{type}">
               {type}
             </option>
@@ -48,7 +48,7 @@ const Bar = ({
 
         {currentList && (
           <select className="select__wrapper" onChange={(e) => sortHandler(e)}>
-            {filterArr.map((filter, index) => (
+            {constants.filterArr.map((filter, index) => (
               <option key={index} value={index}>
                 {filter}
               </option>
@@ -58,7 +58,7 @@ const Bar = ({
       </div>
       {currentList && (
         <select className="select__wrapper" onChange={(e) => perPageHandler(e)}>
-          {perPageArr.map((perPage, index) => (
+          {constants.perPageArr.map((perPage, index) => (
             <option key={index} value={perPage}>
               {perPage}
             </option>
