@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import * as constants from "../../assets/constants";
+import * as constants from "../../constants";
 
 import {
   SET_POKEMONS,
@@ -9,7 +9,7 @@ import {
   SET_SINGLE_POKEMON,
 } from "../reducers/pokemonReducer";
 
-export function setPokemons(limit = 25, offset = 0) {
+export const setPokemons=(limit = 25, offset = 0) =>{
   return async (dispatch) => {
     try {
       dispatch({ type: IS_LOADING, payload: true });
@@ -33,7 +33,7 @@ export function setPokemons(limit = 25, offset = 0) {
   };
 }
 
-export function setPokemonsById(id) {
+export const setPokemonsById=(id) =>{
   return async (dispatch) => {
     try {
       dispatch({ type: IS_LOADING, payload: true });
@@ -61,7 +61,7 @@ export function setPokemonsById(id) {
   };
 }
 
-export function setPokemonsByTypes(type = "normal") {
+export const setPokemonsByTypes=(type = "normal")=> {
   return async (dispatch) => {
     try {
       dispatch({ type: IS_LOADING, payload: true });
@@ -83,7 +83,7 @@ export function setPokemonsByTypes(type = "normal") {
     }
   };
 }
-export function setSearchResult(name) {
+export const setSearchResult=(name) =>{
   return async (dispatch) => {
     try {
       const { data } = await axios.get(
@@ -112,20 +112,19 @@ export function setSearchResult(name) {
     }
   };
 }
-
-export function setTotalCount(total) {
+export const setTotalCount=(total)=> {
   return {
     type: SET_TOTAL_COUNT,
     payload: total,
   };
 }
-export function setSorted(pokemons) {
+export const setSorted=(pokemons)=> {
   return {
     type: SET_POKEMONS,
     payload: pokemons,
   };
 }
-export function setIsLoad(bool) {
+export const setIsLoad=(bool)=> {
   return {
     type: IS_LOADING,
     payload: bool,

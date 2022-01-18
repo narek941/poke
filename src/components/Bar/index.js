@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import * as constants from "../../assets/constants";
+import * as constants from "../../constants";
 
 import "./Bar.css";
 
@@ -12,8 +12,17 @@ const Bar = ({
   handleInputChange,
   inputValue,
   searchClick,
-  currentList,
 }) => {
+  
+  const mapOption = (arr)=>{
+    const newMap= arr.map((type, index) => (
+      <option key={index} value="{type}">
+        {type}
+      </option>
+    ))
+      return newMap
+  }
+  
   return (
     <div className="container bar__container">
       <div className="filter__container">
@@ -39,33 +48,19 @@ const Bar = ({
           onChange={(e) => typeHandler(e)}
         >
           <option>Type</option>
-          {constants.typeArr.map((type, index) => (
-            <option key={index} value="{type}">
-              {type}
-            </option>
-          ))}
+          {mapOption(constants.typeArr)}
         </select>
 
-        {currentList && (
-          <select className="select__wrapper" onChange={(e) => sortHandler(e)}>
-            {constants.filterArr.map((filter, index) => (
-              <option key={index} value={index}>
-                {filter}
-              </option>
-            ))}
+        <select className="select__wrapper" onChange={sortHandler}>
+          {mapOption(constants.filterArr)}
           </select>
-        )}
+        
       </div>
-      {currentList && (
-        <select className="select__wrapper" onChange={(e) => perPageHandler(e)}>
-          {constants.perPageArr.map((perPage, index) => (
-            <option key={index} value={perPage}>
-              {perPage}
-            </option>
-          ))}
-        </select>
-      )}
+      <select className="select__wrapper" onChange={perPageHandler}>
+        {mapOption(constants.perPageArr)}
+      </select>
     </div>
+ 
   );
 };
 Bar.propTypes = {

@@ -1,27 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Bar, List, Header, Pagination, FilteredList } from "../../components";
+import Bar from "../../components/Bar";
+import List from "../../components/List";
+import Header from "../../components/Header";
+import Pagination from "../../components/Pagination";
 import {
-  setSorted,
   setPokemons,
   setPokemonsByTypes,
   setSearchResult,
+  setSorted,
 } from "../../redux/actions/pokemonActions";
+import {selectPokemons,selectIsLoading,selectTotalCount} from "../../redux/selectors";
+import {getGroupOfPage} from "../../hooks/useGroupOfPage";
+import "./Home.css";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const pokemons = useSelector((state) => state.pokemons.pokemons);
-  const isLoading = useSelector((state) => state.pokemons.isLoading);
-  const totalCount = useSelector((state) => state.pokemons.totalCount);
+
+  const pokemons = useSelector(selectPokemons);
+  const isLoading = useSelector(selectIsLoading);
+  const totalCount = useSelector(selectTotalCount);
 
   const [perPage, setPerPage] = useState(25);
   const [inputValue, setInputValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [currentList, setCurrentList] = useState(true);
-
   const totalPages = Math.ceil(totalCount / perPage);
-  const offset = (currentPage - 1) * perPage;
+
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
@@ -30,16 +35,13 @@ const Home = () => {
     if (e.target.searchText.value.trim().length > 1)
       dispatch(setSearchResult(e.target.searchText.value));
     setInputValue("");
-    setCurrentList(false);
   };
-
   const typeHandler = (e) => {
-    setCurrentList(true);
     dispatch(setPokemonsByTypes(e.target.value, perPage, currentPage));
-    setCurrentList(false);
   };
 
-  const sortHandler = (e) => {
+   const sortHandler = (e) => {
+     dispatch(setSorted)
     switch (e.target.value) {
       case "0":
         const sortedLtoH = [...pokemons].sort((a, b) => a.id - b.id);
@@ -64,48 +66,20 @@ const Home = () => {
       default:
         break;
     }
-  };
+   };
 
   const perPageHandler = (e) => {
     setPerPage(e.target.value);
+    setCurrentPage(0);
   };
 
   const handlePageClick = (item) => {
     setCurrentPage(item);
-    window.scrollTo(0, 0);
   };
 
-  const getGroupofPage = () => {
-    let maxPages = 10;
-    let startPage = 1;
-    let endPage = totalPages;
-    if (totalPages <= maxPages) {
-      startPage = 1;
-      endPage = totalPages;
-    } else {
-      const maxPagesBeforeCurrentPage = Math.floor(maxPages / 2);
-      const maxPagesAfterCurrentPage = Math.ceil(maxPages / 2) - 1;
-      if (currentPage <= maxPagesBeforeCurrentPage) {
-        startPage = 1;
-        endPage = maxPages;
-      } else if (currentPage + maxPagesAfterCurrentPage >= totalPages) {
-        startPage = totalPages - maxPages + 1;
-        endPage = totalPages;
-      } else {
-        startPage = currentPage - maxPagesBeforeCurrentPage;
-        endPage = currentPage + maxPagesAfterCurrentPage;
-      }
-    }
-
-    const pages = Array.from(Array(endPage + 1 - startPage).keys()).map(
-      (i) => startPage + i
-    );
-
-    return pages;
-  };
-
+ 
   useEffect(() => {
-    dispatch(setPokemons(perPage, offset));
+    dispatch(setPokemons(perPage, currentPage * perPage));
   }, [currentPage, perPage]);
 
   return (
@@ -118,22 +92,19 @@ const Home = () => {
         inputValue={inputValue}
         handleInputChange={handleInputChange}
         searchClick={searchClick}
-        currentList={currentList}
       />
-      {currentList ? (
-        <>
-          <List pokemons={pokemons} isLoading={isLoading} />
-          {totalPages > 1 && (
-            <Pagination
-              currentPage={currentPage}
-              handlePageClick={handlePageClick}
-              getGroupofPage={getGroupofPage}
-            />
-          )}
-        </>
-      ) : (
-        <FilteredList pokemons={pokemons} />
-      )}
+      <List pokemons={pokemons} isLoading={isLoading} />
+     {
+     totalPages > 1
+      &&  
+     <Pagination
+        pokemons={pokemons}
+        totalPages={totalPages}
+        currentPage={currentPage}
+        handlePageClick={handlePageClick}
+        getGroupOfPage={getGroupOfPage}
+      />
+      }
     </>
   );
 };

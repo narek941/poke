@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 
 import "./Pagination.css";
 
-const Pagination = ({ currentPage, handlePageClick, getGroupofPage }) => {
-  const groupArr = getGroupofPage();
+const Pagination = ({ currentPage,totalPages, handlePageClick, getGroupOfPage }) => {
+  
   const prevStyle = `${currentPage === 1 ? "disable__button" : "page"}`;
+  const groupArr = getGroupOfPage(totalPages,currentPage,10,1);
 
   return (
     <div className="pagination__wrapper">
@@ -38,7 +39,7 @@ const Pagination = ({ currentPage, handlePageClick, getGroupofPage }) => {
 Pagination.propTypes = {
   currentPage: PropTypes.number,
   handlePageClick: PropTypes.func,
-  getGroupofPage: PropTypes.func,
+  getGroupOfPage: PropTypes.func,
 };
 
 export default Pagination;

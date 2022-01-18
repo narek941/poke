@@ -3,16 +3,16 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Header, PokemonDetail } from "../../components";
-import * as constants from "../../assets/constants";
+import * as constants from "../../constants";
 import { setPokemonsById } from "../../redux/actions/pokemonActions";
-
+import {selectSinglePokemon} from "../../redux/selectors";
 import "./Pokemon.css";
 
 const Pokemon = () => {
   const dispatch = useDispatch();
   const { poke } = useParams();
 
-  const pokemon = useSelector((state) => state.pokemons.singlePokemon);
+  const pokemon = useSelector(selectSinglePokemon);
 
   useEffect(() => {
     dispatch(setPokemonsById(poke));

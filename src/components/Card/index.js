@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import "./Card.css";
 
-const Card = ({ name, img, id }) => (
+const Card = ({ name, img, id }) => 
   <NavLink to={"pokemon/" + id}>
     <div className="card__container">
       <div className="card">
@@ -16,7 +16,7 @@ const Card = ({ name, img, id }) => (
       </div>
     </div>
   </NavLink>
-);
+
 Card.propTypes = {
   name: PropTypes.string,
   img: PropTypes.string,
